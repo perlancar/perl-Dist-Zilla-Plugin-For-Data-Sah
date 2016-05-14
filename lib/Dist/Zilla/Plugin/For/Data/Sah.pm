@@ -45,9 +45,10 @@ sub munge_files {
                 my $pkg_contents = { list_package_contents($package) };
                 my @clauses;
                 for (sort keys %$pkg_contents) {
-                    next unless /^clause_(.+)/;
+                    next unless /^clausemeta_(.+)/;
                     push @clauses, $1;
                 }
+                $self->log_debug(["type %s has these clauses: %s", $type, \@clauses]);
 
                 for my $clause (@clauses) {
                     my $meth = "clausemeta_$clause";
@@ -65,7 +66,7 @@ sub munge_files {
                         my $nsch_dmp = Data::Dump::dump($nsch);
                         last if $sch_dmp eq $nsch_dmp;
                         my $diff = Text::Diff::diff(\$sch_dmp, \$nsch_dmp);
-                        $self->log_fatal("Schema for arg of clause '$clause' is not normalized, below is the dump diff (- is current, + is normalized): " . $diff);
+                        $self->log_fatal("Schema for arg of clause '$clause' (type $type) is not normalized, below is the dump diff (- is current, + is normalized): " . $diff);
                     }
                 } # for clause
             } # Data::Sah::Type::*
@@ -94,6 +95,8 @@ L<Data::Sah>). Currently it does the following:
 =over
 
 =item * For C<lib/Data/Sah/Type/*.pm>, check that schema specified in each clause's C<arg> is normalized
+
+=item * TODO: For C<lib/Data/Sah/Type/*.pm>, check that schema specified in each clause attribute's C<arg> is normalized
 
 =back
 
