@@ -53,11 +53,11 @@ sub munge_files {
                 for my $clause (@clauses) {
                     my $meth = "clausemeta_$clause";
                     my $clausemeta = $package->$meth;
-                    my $sch = $clausemeta->{arg} or next;
 
                     # check that schema is already normalized
                     {
-                        $self->log_debug(["checking schema for arg of clause '%s' (type %s) ...", $clause, $type]);
+                        my $sch = $clausemeta->{schema} or last;
+                        $self->log_debug(["checking schema of clause '%s' (type %s) ...", $clause, $type]);
                         require Data::Dump;
                         require Data::Sah::Normalize;
                         require Text::Diff;
@@ -66,7 +66,7 @@ sub munge_files {
                         my $nsch_dmp = Data::Dump::dump($nsch);
                         last if $sch_dmp eq $nsch_dmp;
                         my $diff = Text::Diff::diff(\$sch_dmp, \$nsch_dmp);
-                        $self->log_fatal("Schema for arg of clause '$clause' (type $type) is not normalized, below is the dump diff (- is current, + is normalized): " . $diff);
+                        $self->log_fatal("Schema for clause '$clause' (type $type) is not normalized, below is the dump diff (- is current, + is normalized): " . $diff);
                     }
                 } # for clause
             } # Data::Sah::Type::*
