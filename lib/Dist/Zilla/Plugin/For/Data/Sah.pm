@@ -94,9 +94,9 @@ L<Data::Sah>). Currently it does the following:
 
 =over
 
-=item * For C<lib/Data/Sah/Type/*.pm>, check that schema specified in each clause's C<arg> is normalized
+=item * For C<lib/Data/Sah/Type/*.pm>, check that schema specified in each clause's C<schema> is normalized
 
-=item * TODO: For C<lib/Data/Sah/Type/*.pm>, check that schema specified in each clause attribute's C<arg> is normalized
+=item * TODO: For C<lib/Data/Sah/Type/*.pm>, check that schema specified in each clause attribute's C<schema> is normalized
 
 =back
 
