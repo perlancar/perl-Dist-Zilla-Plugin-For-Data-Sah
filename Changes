@@ -1,5 +1,12 @@
 Revision history for Dist-Zilla-Plugin-For-Data-Sah
 
+0.003   2016-06-02 (PERLANCAR)
+
+	- No functional changes.
+
+	- Update POD.
+
+
 0.002   2016-06-01 (PERLANCAR)
 
 	- Adjust to Data::Sah 0.79 (clause specification property 'arg'
