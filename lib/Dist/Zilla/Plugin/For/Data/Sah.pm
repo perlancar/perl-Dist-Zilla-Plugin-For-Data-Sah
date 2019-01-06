@@ -7,7 +7,7 @@ use 5.010001;
 use strict;
 use warnings;
 
-use Package::MoreUtil qw(list_package_contents);
+use Package::Stash;
 
 use Moose;
 use namespace::autoclean;
@@ -42,9 +42,8 @@ sub munge_files {
                     require $package_pm;
                 }
 
-                my $pkg_contents = { list_package_contents($package) };
                 my @clauses;
-                for (sort keys %$pkg_contents) {
+                for (Package::Stash->new($package)->list_all_symbols("CODE")) {
                     next unless /^clausemeta_(.+)/;
                     push @clauses, $1;
                 }
