@@ -1,18 +1,18 @@
-0.004   2019-01-06 (PERLANCAR)
+0.004   2019-01-06  Released-By: PERLANCAR
 
 	- No functional changes.
 
 	- Replace the use of Package::MoreUtil with Package::Stash.
 
 
-0.003   2016-06-02 (PERLANCAR)
+0.003   2016-06-02  Released-By: PERLANCAR
 
 	- No functional changes.
 
 	- Update POD.
 
 
-0.002   2016-06-01 (PERLANCAR)
+0.002   2016-06-01  Released-By: PERLANCAR
 
 	- Adjust to Data::Sah 0.79 (clause specification property 'arg'
 	  renamed to 'schema').
@@ -20,6 +20,6 @@
 	- Fixes, add log statements.
 
 
-0.001   2016-05-15 (PERLANCAR)
+0.001   2016-05-15  Released-By: PERLANCAR
 
         - First release.
